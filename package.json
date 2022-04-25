@@ -28,6 +28,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "sql-template-strings": "^2.2.2",
+    "ssh2": "^1.9.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

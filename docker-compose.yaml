@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: "3"
+version: "3.7"
 services:
   app:
     build: .
@@ -17,10 +17,14 @@ services:
       - /app/node_modules
 
   postgres:
-    image: postgres:10.4
+    image: postgres:14.2
     ports:
       - "35432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: db
+    volumes:
+      - vpn-db:/var/lib/postgresql/data
+volumes:
+  vpn-db:

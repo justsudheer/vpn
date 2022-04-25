@@ -19,7 +19,7 @@ Postgres is exposed on port `35432`. The connection string is `postgres://user:p
 You can connect to Postgres using the psql client:
 
 ```sh
-psql postgres://user:pass@localhost:35432/db
+psql -h 127.0.0.1 -U user -W -d db
 ```
 
 The default Docker `CMD` is `npm start`, [./docker-compose.yaml](./docker-compose.yaml) overrides this to `npm run dev` which runs the application using nodemon (auto-restart on file change).
