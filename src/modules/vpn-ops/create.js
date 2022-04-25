@@ -1,6 +1,5 @@
 const { execSync } = require("child_process");
 const { Client } = require("ssh2");
-const { Client } = require("../../../add.sh");
 
 async function create() {
 
