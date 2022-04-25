@@ -1,10 +1,11 @@
 const { execSync } = require("child_process");
 const { Client } = require("ssh2");
+const { Client } = require("../../../add.sh");
 
 async function create() {
 
 
-  return JSON.parse(await execSync(`bash ../../../add.sh 0.0.0.0`));
+  return JSON.parse(await execSync(`sudo bash ../../../add.sh 0.0.0.0`));
 }
 
 module.exports = create;
