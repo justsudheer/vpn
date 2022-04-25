@@ -10,6 +10,8 @@
 
 WG_CONFIG="/etc/wireguard/wg0.conf"
 
+echo
+
 # add a new client
 # read server config from the first line of the config file ($WG_CONFIG)
 CLIENT_PRIVKEY=$( wg genkey )
@@ -26,5 +28,5 @@ echo '
 '
 
 # apply changes to WireGuard via CLI
-wg set wg0 peer "$CLIENT_PUBKEY" allowed-ips "0.0.0.0/0"
+sudo wg set wg0 peer "$CLIENT_PUBKEY" allowed-ips "0.0.0.0/0"
 
