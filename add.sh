@@ -8,7 +8,7 @@
 #
 # ./add.sh <$CLIENT_ADDRESS (allowedIP e.g.: 10.9.0.3>
 
-WG_CONFIG="/etc/wireguard/wg0.conf"
+WG_CONFIG="/config/wg0.conf"
 
 echo
 
