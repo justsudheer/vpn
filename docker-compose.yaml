@@ -1,22 +1,6 @@
 # docker-compose.yml
 version: "3.7"
 services:
-  app:
-    build: .
-    depends_on:
-      - postgres
-      - wireguard
-    environment:
-      DATABASE_URL: postgres://user:pass@postgres:5432/db
-      NODE_ENV: development
-      PORT: 3000
-    ports:
-      - "3000:3000"
-    command: npm run dev
-    volumes:
-      - .:/app/
-      - /app/node_modules
-
   postgres:
     image: postgres:14.2
     ports:
@@ -27,9 +11,11 @@ services:
       POSTGRES_DB: db
     volumes:
       - vpn-db:/var/lib/postgresql/data
-  wireguard:
+  app:
     image: linuxserver/wireguard
-    container_name: wireguard
+    build: .
+    depends_on:
+      - postgres
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -42,11 +28,18 @@ services:
       - PEERS=1 #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
+      DATABASE_URL: postgres://user:pass@postgres:5432/db
+      NODE_ENV: development
+      PORT: 3000
     volumes:
       - /config
       - /lib/modules
+      - .:/app/
+      - /app/node_modules
     ports:
       - 51821:51821/udp
+      - "3000:3000"
+    command: npm run dev
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped

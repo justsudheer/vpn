@@ -4,7 +4,7 @@ const { execSync } = require('child_process')
 function init() {
 
     // clear WireGuard CLI configurations, your wg0.conf should only contain the interface and no peers (unless you have default ones for access control)
-    execSync('docker-compose run wireguard systemctl restart wg-quick@wg0')
+    execSync('systemctl restart wg-quick@wg0')
 
 }
 

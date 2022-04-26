@@ -28,5 +28,5 @@ echo '
 '
 
 # apply changes to WireGuard via CLI
-docker-compose run wireguard wg set wg0 peer "$CLIENT_PUBKEY" allowed-ips "0.0.0.0/0"
+wg set wg0 peer "$CLIENT_PUBKEY" allowed-ips "0.0.0.0/0"
 
