@@ -28,9 +28,9 @@ services:
       - PEERS=1 #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
-      DATABASE_URL: postgres://user:pass@postgres:5432/db
-      NODE_ENV: development
-      PORT: 3000
+      - DATABASE_URL=postgres://user:pass@postgres:5432/db
+      - NODE_ENV=development
+      - PORT=3000
     volumes:
       - /config
       - /lib/modules
