@@ -37,7 +37,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - SERVERURL=auto
-      - SERVERPORT=51820 #optional
+      - SERVERPORT=51821 #optional
       - PEERS=1 #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
