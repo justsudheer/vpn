@@ -49,6 +49,7 @@ services:
       - 51821:51821/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
+      - restart wg-quick@wg0
     restart: unless-stopped
 volumes:
   vpn-db:
