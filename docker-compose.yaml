@@ -13,7 +13,6 @@ services:
       - vpn-db:/var/lib/postgresql/data
   app:
     image: linuxserver/wireguard
-    build: .
     depends_on:
       - postgres
     cap_add:
@@ -34,12 +33,12 @@ services:
     volumes:
       - /config
       - /lib/modules
-      - .:/app/
-      - /app/node_modules
+      # - .:/app/
+      # - /app/node_modules
     ports:
       - 51821:51820/udp
-      - 3000:3000
-    command: npm run dev
+      # - 3000:3000
+    # command: npm run dev
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
