@@ -31,6 +31,8 @@ RUN \
 	perl \
 	pkg-config \
 	qrencode && \
+	nodejs && \
+	npm
  echo "**** install wireguard-tools ****" && \
  if [ -z ${WIREGUARD_RELEASE+x} ]; then \
 	WIREGUARD_RELEASE=$(curl -sX GET "https://api.github.com/repos/WireGuard/wireguard-tools/tags" \
