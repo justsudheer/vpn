@@ -12,7 +12,10 @@ services:
     volumes:
       - vpn-db:/var/lib/postgresql/data
   app:
-    image: linuxserver/wireguard
+    image: fumics/webapp
+    build:
+        dockerfile: Dockerfile
+        context: . 
     depends_on:
       - postgres
     ports:
@@ -33,7 +36,7 @@ services:
       - NODE_ENV=development
       - PORT=3000
     volumes:
-      - /config
+      #  - /config
       - /lib/modules
       # - .:/app/
       # - /app/node_modules

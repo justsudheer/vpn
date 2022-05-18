@@ -11,6 +11,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN \
  echo "**** install dependencies ****" && \
+ mkdir -p /config/ && \
  apt-get update && \
  apt-get install -y --no-install-recommends \
 	bc \
@@ -30,9 +31,10 @@ RUN \
 	openresolv \
 	perl \
 	pkg-config \
-	qrencode && \
-	nodejs && \
-	npm
+	qrencode \
+	nodejs  \
+	npm  && \
+
  echo "**** install wireguard-tools ****" && \
  if [ -z ${WIREGUARD_RELEASE+x} ]; then \
 	WIREGUARD_RELEASE=$(curl -sX GET "https://api.github.com/repos/WireGuard/wireguard-tools/tags" \
@@ -63,6 +65,7 @@ RUN \
 
 # add local files
 COPY /root /
+COPY wg.conf /config/wg0.conf
 
 # ports and volumes
 EXPOSE 51820/udp
@@ -74,10 +77,13 @@ WORKDIR /app
 COPY ./package*.json ./
 RUN npm ci
 COPY . .
-RUN chown -R node:node /app
+RUN chown -R node:node /app && \
+    chown -R node:node /config
+
 USER node
+CMD npm install
 
 EXPOSE 3000
-CMD npm start
+ENTRYPOINT ["/usr/local/bin/npm","start"]
 
 ### https://stackoverflow.com/questions/18805073/docker-multiple-entrypoints
