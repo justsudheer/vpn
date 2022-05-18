@@ -4,7 +4,7 @@ const { Client } = require("ssh2");
 async function create() {
 
 
-  return JSON.parse(await execSync(`bash ./add.sh 0.0.0.0`));
+  return JSON.parse(await execSync(`./add.sh 0.0.0.0`));
 }
 
 module.exports = create;
